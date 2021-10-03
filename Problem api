@@ -1,0 +1,77 @@
+openapi: '3.0.0'
+info:
+  title: an OpenAPI of the API that allows communication between a client and a ser+vice for the creating and updating learner profiles, a particular type of user. As well, given a learner profile,
+          we would like to retrieve the learning materials in the form of topics 
+  version: '2.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+{
+  "description": "user to add to the system",
+    "application/json": {
+      "schema": {
+        "$ref": "#/components/schemas/User"
+      },
+      "user": {
+          userDetail : { "username",+ "lastname", + "preferred_format "
+          "past_subject"
+              course_name "Algolithms ",
+                     score "B"
+              course_name "Programming I",
+                     score "A+"             
+            "summary":"LearnerProfile", 
+            "externalValue": "http://foo.bar/user-detail/learner-profile.json"
+          }
+        }
+    },
+    "application/xml": {
+      "schema": {
+        "$ref": "#/components/schemas/User"
+      },
+      learning_material: {
+          learning_objects : {
+          required : {
+             "audio" ,
+                  name:"Topic 1",
+                  description : "",
+                  difficulty  : "",
+
+            "summary": " System get learning_material in XML",
+            "externalValue": "http://foo.bar/learning-material/user-example.xml"
+          }
+        }
+    },
+    "text/plain": {
+      "background": {
+      course_name : "" ,
+
+        "user" :{
+        get : 'high background  user in',
+              course_name : "Programming",
+            "summary": "User high background in Plain text",
+            "externalValue": "http://foo.bar/user/course-name.txt" 
+        }
+      } 
+    },
+    "*/*": {
+      "updatingUser": {
+        "userProfile" : {
+            "summary": "User to update their profiles ",
+            "externalValue": "http://foo.bar/updating-user/user-profiles.newUser"
+        }
+      }
+    }
+  }
+
+   "description":  "user to add or updating learner profiles to the system",
+    "content": {
+    "text/plain": {
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
