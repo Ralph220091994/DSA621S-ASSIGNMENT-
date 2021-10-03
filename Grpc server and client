@@ -1,0 +1,65 @@
+import ballerina/io;
+import ballerina/http;
+import ballerina;
+
+
+// The gRPC service is attached to the listener.
+service functions on new grpc:Listener(9090)  {
+   // A resource that accepts a string message.
+   resource function fn(grpc:Caller developer, string function) {
+       // Send the response to the client.
+       grpc:Error? err = developer->send("what " + function + "! Greetings from gRPC service!");
+ 
+       // After sending the response, call ‘complete()’ to indicate that the response was completely sent.
+       grpc:Error? result = developer->complete();
+   }
+}
+
+// Use ‘callfunction’ to execute the call in the blocking mode.
+function callfunction = new("http://localhost:9090");
+ 
+// Create gRPC headers.
+grpc:Headers headears = new;
+headers.setEntry("fullname", "callfunction");
+ 
+// Call the method in the service using a client stub.
+[string, grpc:Headers]|grpc:Error responseFromServer = callfunction->functions("add_new_fn","delete_fn","add_fns"," show_fn","show_all_fns","show_all_with_criteria" headers);
+
+// The gRPC service is attached to the listener.
+service function on new grpc:Listener(9090) {
+   // Set the Streaming Annotation to ‘true’. It specifies that the resource is capable of
+   // sending multiple responses per request.
+   @grpc:ResourceConfig { streaming: true }
+   resource function lotsOfReplies(grpc:Caller developer, string functions) {
+       string[] call_function = ["add function", "edit_function","delete function", "show_function", "show_function_versions"];
+       // Send multiple responses to the client.
+       foreach string greet in greets {
+           grpc:Error? err = caller->send("function" + could not be called);
+       }
+       // Once the messages are sent to the server, call ‘complete()’ to indicate that the request was completely sent.
+       grpc:Error? result = caller->complete();
+   }
+}
+
+ // Client endpoint configurations.
+    Developerclient developerclient = new("http://localhost:9090");
+ 
+    // Execute the service streaming call by registering a message listener.
+    grpc:Error? result = developerClient->lotsOfReplies
+("add function", "edit_function","delete function", "show_function", "show_function_versions", functions);
+ 
+// Define a listener service to receive the messages from the server.
+service functions = service {
+ 
+   // This resource method is invoked when the service receives a message.
+   resource function onMessage(string function) {
+   }
+   
+   // This resource method is invoked if an error is returned.
+   resource function onError(error err) {
+   }
+ 
+   // Invoke this resource when the server sends all the responses to the request.
+    resource function onComplete() {
+   }
+}
