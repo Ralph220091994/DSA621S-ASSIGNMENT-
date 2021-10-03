@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: API that allows communication between a client and a service
+  description: API for creating and updating learner profiles, a particular type of user. As well, given a learner profile,
+          we would like to retrieve the learning materials in the form of topics
+  version: '1.0'
+servers:
+  - url: "https://api.server.test/v1"
+paths:
+  '/learners/{learner_id}':
+    parameters:
+      - schema:
+          type: integer
+        name: learner_id
+        in: path
+        required: true
+    get:
+      summary: learner
+      tags: []
+      responses:
+        '200':
+          description: learner profile displays
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  course_name:
+                    type: integer
+                  course_code:
+                    type: integer
+                    items:
+                       type: object  
+                       properties:
+                         learning_objects:
+                           type: string
+                         score:
+                           type: string
+                           
+                    
+                    
+                    
+      operationId: get-learner-laerner_id
+      description: Retrieve a specific learner by ID
+  /learners:
+    post:
+      summary: learners
+      operationId: post-learners
+      responses:
+        '201':
+          description: Created
+      description: Add a new learner profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+components:
+  schemas: {}
