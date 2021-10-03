@@ -1,0 +1,106 @@
+syntax = "proto3"; 
+
+package functions; 
+
+//Service. define the methods that the grpc server can expose to the client.
+service functions {
+  rpc add_new_fn (Developer) returns (adds_new_fn);
+  rpc delete_fn (Developer) returns (deletes_fn);
+  rpc add_fns (Developer) returns (adds_fns);
+  rpc show_fn (Developer) returns (shows_fn);
+  rpc show_all_fns (developer) returns (shows_all_fns)
+  rpc show_all_with_criteria (developer) returns (shows_all_with_criteria)
+}
+
+// Message Type definition for an Developer.
+message Developer {
+  string Fullname = 1;
+  string emailaddress = 2;
+  string language = 3;
+  string new_fn = 4;
+  sting add_fns = 5;
+  bool delete_fn = 6;
+  string show_fn = 7;
+  string show_all_fns = 8;
+  string show_all_with_criteria = 9;
+
+  
+}
+
+// Message Type definition for add_new_fn response.
+message add_new_fn {
+  bool add_new_fn = 1;
+  bool add_new_fn_v =2;
+}
+
+// Message Type definition for adds_new_fn response.
+message adds_new_fn {
+  string new_fn = 1;
+  string new_fn_v = 2;
+  
+}
+
+// Message Type definition for add_fns response.
+message add_fns {
+  bool add_fns = 1;
+  
+}
+
+// Message Type definition for adds_fns response.
+message adds_fns {
+  string add_fns = 1;
+  
+  
+}
+
+// Message Type definition for delete_fn response.
+message delete_fn {
+  bool delete_fn = 1;
+  
+}
+
+// Message Type definition for deletes_fn response.
+message deletes_fn {
+  bool delete_fn = 1;
+  
+  
+}
+
+// Message Type definition for show_fn response.
+message show_fn {
+  bool show_fn = 1;
+  
+}
+
+// Message Type definition for shows_fn response.
+message shows_fn {
+  string show_fn = 1;
+  
+  
+}
+
+// Message Type definition for show_all_fns response.
+message show_all_fns {
+  bool show_all_fns = 1;
+  
+}
+
+// Message Type definition for shows_all_fns response.
+message shows_all_fns {
+  string show_all_fns = 1;
+  
+  
+}
+
+// Message Type definition for show_all_with_criteria response.
+message show_all_with_criteria {
+  bool show_all_with_criteria = 1;
+  
+}
+
+// Message Type definition for shows_all_with_criteria.
+message shows_all_with_criteria {
+  string show_all_with_criteria = 1;
+  
+  
+}
